@@ -6,7 +6,7 @@ on:
 
 jobs:
   style:
-    name: Check Code Style
+    name: Style
     runs-on: ubuntu-latest
 
     steps:
