@@ -5,6 +5,28 @@ on:
     branches: [main]
 
 jobs:
+  style:
+    name: Style
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 25
+      
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check code formatting
+        run: npm run format:check
+      
+      - name: Lint code
+        run: npm run lint -- --max-warnings=0
+
   tests:
     name: Tests
     runs-on: ubuntu-latest
@@ -16,7 +38,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 25
       
       - name: Install dependencies
         run: npm ci
